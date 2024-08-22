@@ -11,6 +11,7 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 ## v1.3.1
 
 - allow more types for ParseString
+- go mod update
 
 ## v1.3.0
 
