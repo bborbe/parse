@@ -24,5 +24,11 @@ var _ = DescribeTable("ParseString",
 		}
 	},
 	Entry("string", "banana", "banana", false),
-	Entry("int", 42, "", true),
+	Entry("int", 42, "42", false),
+	Entry("int32", int32(42), "42", false),
+	Entry("int64", int64(42), "42", false),
+	Entry("uint", uint(42), "42", false),
+	Entry("uint32", uint32(42), "42", false),
+	Entry("uint64", uint64(42), "42", false),
+	Entry("struct", struct{}{}, "", true),
 )
