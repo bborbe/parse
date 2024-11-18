@@ -31,4 +31,6 @@ var _ = DescribeTable("ParseString",
 	Entry("uint32", uint32(42), "42", false),
 	Entry("uint64", uint64(42), "42", false),
 	Entry("struct", struct{}{}, "", true),
+	Entry("[]string", []string{"banana"}, "", true),
+	Entry("map[string]string", map[string]string{"key": "banana"}, "", true),
 )
