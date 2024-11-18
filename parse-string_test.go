@@ -34,3 +34,20 @@ var _ = DescribeTable("ParseString",
 	Entry("[]string", []string{"banana"}, "", true),
 	Entry("map[string]string", map[string]string{"key": "banana"}, "", true),
 )
+
+var _ = DescribeTable("ParseStringDefault",
+	func(value interface{}, defaultValue string, expectedResult string) {
+		result := parse.ParseStringDefault(context.Background(), value, defaultValue)
+		Expect(result).To(Equal(expectedResult))
+	},
+	Entry("string", "banana", "default", "banana"),
+	Entry("int", 42, "default", "42"),
+	Entry("int32", int32(42), "default", "42"),
+	Entry("int64", int64(42), "default", "42"),
+	Entry("uint", uint(42), "default", "42"),
+	Entry("uint32", uint32(42), "default", "42"),
+	Entry("uint64", uint64(42), "default", "42"),
+	Entry("struct", struct{}{}, "default", "default"),
+	Entry("[]string", []string{"banana"}, "default", "default"),
+	Entry("map[string]string", map[string]string{"key": "banana"}, "default", "default"),
+)
