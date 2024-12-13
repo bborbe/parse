@@ -1,6 +1,6 @@
 module github.com/bborbe/parse
 
-go 1.23.3
+go 1.23.4
 
 require (
 	github.com/bborbe/errors v1.3.0
