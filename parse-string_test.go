@@ -12,6 +12,14 @@ import (
 	. "github.com/onsi/gomega"
 )
 
+type MyString string
+
+type MyStringer string
+
+func (f MyStringer) String() string {
+	return string(f)
+}
+
 var _ = DescribeTable("ParseString",
 	func(value interface{}, expectedResult string, expectError bool) {
 		result, err := parse.ParseString(context.Background(), value)
@@ -24,6 +32,8 @@ var _ = DescribeTable("ParseString",
 		}
 	},
 	Entry("string", "banana", "banana", false),
+	Entry("Stringer", MyStringer("banana"), "banana", false),
+	Entry("custom", MyString("banana"), "banana", false),
 	Entry("int", 42, "42", false),
 	Entry("int32", int32(42), "42", false),
 	Entry("int64", int64(42), "42", false),

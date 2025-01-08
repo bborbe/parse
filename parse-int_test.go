@@ -5,7 +5,6 @@
 package parse_test
 
 import (
-	"bytes"
 	"context"
 
 	"github.com/bborbe/parse"
@@ -13,61 +12,24 @@ import (
 	. "github.com/onsi/gomega"
 )
 
-var _ = Describe("ParseInt", func() {
-	var ctx context.Context
-	var err error
-	var input interface{}
-	var result int
-	BeforeEach(func() {
-		ctx = context.Background()
-	})
-	JustBeforeEach(func() {
-		result, err = parse.ParseInt(ctx, input)
-	})
-	Context("int", func() {
-		BeforeEach(func() {
-			input = 123
-		})
-		It("returns no error", func() {
+type MyInt int
+
+var _ = DescribeTable("ParseInt",
+	func(value interface{}, expectedResult int, expectError bool) {
+		result, err := parse.ParseInt(context.Background(), value)
+		if expectError {
+			Expect(err).NotTo(BeNil())
+			Expect(result).To(Equal(0))
+		} else {
 			Expect(err).To(BeNil())
-		})
-		It("returns correct result", func() {
-			Expect(result).To(Equal(123))
-		})
-	})
-	Context("float32", func() {
-		BeforeEach(func() {
-			input = float32(123)
-		})
-		It("returns no error", func() {
-			Expect(err).To(BeNil())
-		})
-		It("returns correct result", func() {
-			Expect(result).To(Equal(123))
-		})
-	})
-	Context("string", func() {
-		type Bar int
-		BeforeEach(func() {
-			input = "123"
-		})
-		It("returns no error", func() {
-			Expect(err).To(BeNil())
-		})
-		It("returns correct result", func() {
-			Expect(result).To(Equal(123))
-		})
-	})
-	Context("Stringer", func() {
-		type Bar int
-		BeforeEach(func() {
-			input = bytes.NewBufferString("123")
-		})
-		It("returns no error", func() {
-			Expect(err).To(BeNil())
-		})
-		It("returns correct result", func() {
-			Expect(result).To(Equal(123))
-		})
-	})
-})
+			Expect(result).To(Equal(expectedResult))
+		}
+	},
+	Entry("string", "1337", 1337, false),
+	Entry("stringer", MyStringer("1337"), 1337, false),
+	Entry("custom int", MyInt(1337), 1337, false),
+	Entry("int", 1337, 1337, false),
+	Entry("float32", float32(1337), 1337, false),
+	Entry("int", 1337, 1337, false),
+	Entry("invalid", "banana", 0, true),
+)

@@ -12,6 +12,8 @@ import (
 	. "github.com/onsi/gomega"
 )
 
+type MyBool bool
+
 var _ = DescribeTable("ParseBool",
 	func(value interface{}, expectedResult bool, expectError bool) {
 		result, err := parse.ParseBool(context.Background(), value)
@@ -28,4 +30,11 @@ var _ = DescribeTable("ParseBool",
 	Entry("error", "error", false, true),
 	Entry("true string", "true", true, false),
 	Entry("false string", "false", false, false),
+	Entry("TRUE string", "TRUE", true, false),
+	Entry("FALSE string", "FALSE", false, false),
+	Entry("True string", "True", true, false),
+	Entry("False string", "False", false, false),
+	Entry("stringer true", MyStringer("true"), true, false),
+	Entry("stringer false", MyStringer("false"), false, false),
+	Entry("MyBool false", MyBool(true), true, false),
 )
