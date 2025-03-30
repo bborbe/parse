@@ -7,9 +7,10 @@ package parse_test
 import (
 	"context"
 
-	"github.com/bborbe/parse"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
+
+	"github.com/bborbe/parse"
 )
 
 var _ = DescribeTable("ParseInt64Array",
