@@ -28,3 +28,16 @@ var _ = DescribeTable("ParseIntArray",
 	Entry("[]int64", []int64{1, 2, 3}, []int{1, 2, 3}, false),
 	Entry("[]float64", []float64{1, 2, 3}, []int{1, 2, 3}, false),
 )
+
+var _ = DescribeTable("ParseIntArrayDefault",
+	func(input interface{}, defaultValue []int, expectedResult []int) {
+		result := parse.ParseIntArrayDefault(context.Background(), input, defaultValue)
+		Expect(result).To(Equal(expectedResult))
+	},
+	Entry("valid []int", []int{1, 2, 3}, []int{999}, []int{1, 2, 3}),
+	Entry("valid []interface{}", []interface{}{1, 2, 3}, []int{999}, []int{1, 2, 3}),
+	Entry("valid []int64", []int64{10, 20}, []int{999}, []int{10, 20}),
+	Entry("valid []float64", []float64{1.0, 2.0}, []int{999}, []int{1, 2}),
+	Entry("invalid returns default", "invalid", []int{888, 777}, []int{888, 777}),
+	Entry("nil returns default", nil, []int{123}, []int{123}),
+)

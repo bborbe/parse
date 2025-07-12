@@ -24,4 +24,22 @@ var _ = Describe("ParseAscii", func() {
 	It("leave normal chars untouched", func() {
 		Expect(parse.ParseAscii(ctx, "abc0123")).To(Equal("abc0123"))
 	})
+	It("handle empty string", func() {
+		Expect(parse.ParseAscii(ctx, "")).To(Equal(""))
+	})
+	It("handle int input", func() {
+		Expect(parse.ParseAscii(ctx, 123)).To(Equal("123"))
+	})
+	It("handle float input", func() {
+		Expect(parse.ParseAscii(ctx, 12.34)).To(Equal("12.34"))
+	})
+	It("handle bool input", func() {
+		Expect(parse.ParseAscii(ctx, true)).To(Equal("true"))
+	})
+	It("handle complex unicode", func() {
+		Expect(parse.ParseAscii(ctx, "Ñoël Ümlaut")).To(Equal("Noel Umlaut"))
+	})
+	It("handle stringer input", func() {
+		Expect(parse.ParseAscii(ctx, MyStringer("tëst"))).To(Equal("test"))
+	})
 })

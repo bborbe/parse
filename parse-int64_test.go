@@ -34,3 +34,19 @@ var _ = DescribeTable("ParseInt64",
 	Entry("int64", 1337, int64(1337), false),
 	Entry("invalid", "banana", int64(0), true),
 )
+
+var _ = DescribeTable("ParseInt64Default",
+	func(value interface{}, defaultValue int64, expectedResult int64) {
+		result := parse.ParseInt64Default(context.Background(), value, defaultValue)
+		Expect(result).To(Equal(expectedResult))
+	},
+	Entry("valid string", "1337", int64(999), int64(1337)),
+	Entry("valid int", 42, int64(999), int64(42)),
+	Entry("valid int64", int64(100), int64(999), int64(100)),
+	Entry("valid float32", float32(25), int64(999), int64(25)),
+	Entry("custom type", MyInt64(200), int64(999), int64(200)),
+	Entry("stringer", MyStringer("75"), int64(999), int64(75)),
+	Entry("invalid returns default", "banana", int64(999), int64(999)),
+	Entry("nil returns default", nil, int64(123), int64(123)),
+	Entry("unsupported type returns default", []int{1, 2}, int64(888), int64(888)),
+)

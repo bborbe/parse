@@ -39,3 +39,18 @@ var _ = DescribeTable("ParseBool",
 	Entry("stringer false", MyStringer("false"), false, false),
 	Entry("MyBool false", MyBool(true), true, false),
 )
+
+var _ = DescribeTable("ParseBoolDefault",
+	func(value interface{}, defaultValue bool, expectedResult bool) {
+		result := parse.ParseBoolDefault(context.Background(), value, defaultValue)
+		Expect(result).To(Equal(expectedResult))
+	},
+	Entry("valid true", true, false, true),
+	Entry("valid false", false, true, false),
+	Entry("valid string true", "true", false, true),
+	Entry("valid string false", "false", true, false),
+	Entry("invalid returns default true", "invalid", true, true),
+	Entry("invalid returns default false", "invalid", false, false),
+	Entry("nil returns default", nil, true, true),
+	Entry("unsupported type returns default", []int{1, 2}, false, false),
+)

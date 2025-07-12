@@ -34,3 +34,19 @@ var _ = DescribeTable("ParseFloat64",
 	Entry("float64", 1.2, 1.2, false),
 	Entry("invalid", "banana", 0.0, true),
 )
+
+var _ = DescribeTable("ParseFloat64Default",
+	func(value interface{}, defaultValue float64, expectedResult float64) {
+		result := parse.ParseFloat64Default(context.Background(), value, defaultValue)
+		Expect(result).To(Equal(expectedResult))
+	},
+	Entry("valid string", "1.2", 999.9, 1.2),
+	Entry("valid int", 42, 999.9, 42.0),
+	Entry("valid float64", 3.14, 999.9, 3.14),
+	Entry("valid float32", float32(2.5), 999.9, 2.5),
+	Entry("custom type", MyFloat64(1.5), 999.9, 1.5),
+	Entry("stringer", MyStringer("2.7"), 999.9, 2.7),
+	Entry("invalid returns default", "banana", 999.9, 999.9),
+	Entry("nil returns default", nil, 123.45, 123.45),
+	Entry("unsupported type returns default", []int{1, 2}, 88.88, 88.88),
+)
