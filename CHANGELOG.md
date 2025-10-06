@@ -8,6 +8,15 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.8.0
+
+- Add ParseASCII function with correct capitalization
+- Add golangci-lint configuration with revive linter
+- Add GitHub Actions workflows for CI/CD and code review
+- Enhance Makefile with lint target
+- Update dependencies and test coverage
+- Deprecate ParseAscii in favor of ParseASCII
+
 ## v1.7.1
 
 - add tests

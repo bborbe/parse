@@ -13,7 +13,8 @@ import (
 	"github.com/bborbe/parse"
 )
 
-var _ = DescribeTable("ParseStrings",
+var _ = DescribeTable(
+	"ParseStrings",
 	func(value interface{}, expectedResult []string, expectError bool) {
 		result, err := parse.ParseStrings(context.Background(), value)
 		if expectError {
@@ -27,7 +28,12 @@ var _ = DescribeTable("ParseStrings",
 	Entry("nil", nil, nil, false),
 	Entry("strings", []string{"banana", "apple"}, []string{"banana", "apple"}, false),
 	Entry("single string", "banana", []string{"banana"}, false),
-	Entry("interface slice", []interface{}{"banana", 42, true}, []string{"banana", "42", "true"}, false),
+	Entry(
+		"interface slice",
+		[]interface{}{"banana", 42, true},
+		[]string{"banana", "42", "true"},
+		false,
+	),
 	Entry("float64 slice", []float64{1.2, 3.4}, []string{"1.2", "3.4"}, false),
 	Entry("bool slice", []bool{true, false}, []string{"true", "false"}, false),
 	Entry("int slice", []int{1, 2, 3}, []string{"1", "2", "3"}, false),
@@ -37,15 +43,31 @@ var _ = DescribeTable("ParseStrings",
 	Entry("unsupported slice type", []float32{1.0, 2.0}, nil, true),
 )
 
-var _ = DescribeTable("ParseStringsDefault",
+var _ = DescribeTable(
+	"ParseStringsDefault",
 	func(value interface{}, defaultValue []string, expectedResult []string) {
 		result := parse.ParseStringsDefault(context.Background(), value, defaultValue)
 		Expect(result).To(Equal(expectedResult))
 	},
 	Entry("valid nil", nil, []string{"default"}, nil),
-	Entry("valid strings", []string{"banana", "apple"}, []string{"default"}, []string{"banana", "apple"}),
+	Entry(
+		"valid strings",
+		[]string{"banana", "apple"},
+		[]string{"default"},
+		[]string{"banana", "apple"},
+	),
 	Entry("valid single string", "test", []string{"default"}, []string{"test"}),
 	Entry("valid int slice", []int{1, 2}, []string{"default"}, []string{"1", "2"}),
-	Entry("invalid returns default", 42, []string{"default1", "default2"}, []string{"default1", "default2"}),
-	Entry("unsupported type returns default", []float32{1.0}, []string{"fallback"}, []string{"fallback"}),
+	Entry(
+		"invalid returns default",
+		42,
+		[]string{"default1", "default2"},
+		[]string{"default1", "default2"},
+	),
+	Entry(
+		"unsupported type returns default",
+		[]float32{1.0},
+		[]string{"fallback"},
+		[]string{"fallback"},
+	),
 )

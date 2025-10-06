@@ -41,7 +41,8 @@ var _ = DescribeTable("ParseTime",
 	Entry("unsupported type", []int{1, 2, 3}, time.RFC3339, "", true),
 )
 
-var _ = DescribeTable("ParseTimeDefault",
+var _ = DescribeTable(
+	"ParseTimeDefault",
 	func(value interface{}, format string, defaultValue string, expectedResult string) {
 		defaultTime, parseErr := time.Parse(time.RFC3339, defaultValue)
 		Expect(parseErr).To(BeNil())
@@ -52,8 +53,26 @@ var _ = DescribeTable("ParseTimeDefault",
 		Expect(parseErr).To(BeNil())
 		Expect(result).To(Equal(expected))
 	},
-	Entry("valid time", "2023-12-25T10:30:00Z", time.RFC3339, "2000-01-01T00:00:00Z", "2023-12-25T10:30:00Z"),
-	Entry("invalid time returns default", "invalid", time.RFC3339, "2000-01-01T00:00:00Z", "2000-01-01T00:00:00Z"),
+	Entry(
+		"valid time",
+		"2023-12-25T10:30:00Z",
+		time.RFC3339,
+		"2000-01-01T00:00:00Z",
+		"2023-12-25T10:30:00Z",
+	),
+	Entry(
+		"invalid time returns default",
+		"invalid",
+		time.RFC3339,
+		"2000-01-01T00:00:00Z",
+		"2000-01-01T00:00:00Z",
+	),
 	Entry("nil returns default", nil, time.RFC3339, "2000-01-01T00:00:00Z", "2000-01-01T00:00:00Z"),
-	Entry("wrong format returns default", "2023-12-25", time.RFC3339, "2000-01-01T00:00:00Z", "2000-01-01T00:00:00Z"),
+	Entry(
+		"wrong format returns default",
+		"2023-12-25",
+		time.RFC3339,
+		"2000-01-01T00:00:00Z",
+		"2000-01-01T00:00:00Z",
+	),
 )

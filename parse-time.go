@@ -18,12 +18,23 @@ func ParseTime(ctx context.Context, value interface{}, format string) (time.Time
 	}
 	t, err := time.Parse(format, str)
 	if err != nil {
-		return time.Time{}, errors.Wrapf(ctx, err, "parse '%s' with format '%s' failed", value, format)
+		return time.Time{}, errors.Wrapf(
+			ctx,
+			err,
+			"parse '%s' with format '%s' failed",
+			value,
+			format,
+		)
 	}
 	return t, nil
 }
 
-func ParseTimeDefault(ctx context.Context, value interface{}, format string, defaultValue time.Time) time.Time {
+func ParseTimeDefault(
+	ctx context.Context,
+	value interface{},
+	format string,
+	defaultValue time.Time,
+) time.Time {
 	result, err := ParseTime(ctx, value, format)
 	if err != nil {
 		return defaultValue
