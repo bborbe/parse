@@ -10,6 +10,11 @@ import (
 	"github.com/bborbe/errors"
 )
 
+// ParseStrings converts an interface{} value to a string slice.
+// Supported types: []string, []interface{}, []float64, []bool, []int, []int32, []int64, string.
+// A single string value is returned as a slice with one element.
+// Returns nil for nil input.
+// Returns an error if the value cannot be converted to []string.
 func ParseStrings(ctx context.Context, value interface{}) ([]string, error) {
 	switch v := value.(type) {
 	case nil:
@@ -51,6 +56,8 @@ func toStringList[T any](ctx context.Context, input []T) ([]string, error) {
 	return result, nil
 }
 
+// ParseStringsDefault converts an interface{} value to a string slice, returning defaultValue on error.
+// This is a convenience wrapper around ParseStrings that never returns an error.
 func ParseStringsDefault(ctx context.Context, value interface{}, defaultValue []string) []string {
 	result, err := ParseStrings(ctx, value)
 	if err != nil {

@@ -11,6 +11,10 @@ import (
 	"github.com/bborbe/errors"
 )
 
+// ParseTime converts an interface{} value to a time.Time using the specified format.
+// The value is first converted to a string using ParseString, then parsed using time.Parse.
+// Format should follow Go's time format layout (e.g., "2006-01-02", "2006-01-02T15:04:05Z07:00").
+// Returns an error if the value cannot be converted to time.Time.
 func ParseTime(ctx context.Context, value interface{}, format string) (time.Time, error) {
 	str, err := ParseString(ctx, value)
 	if err != nil {
@@ -29,6 +33,9 @@ func ParseTime(ctx context.Context, value interface{}, format string) (time.Time
 	return t, nil
 }
 
+// ParseTimeDefault converts an interface{} value to a time.Time using the specified format,
+// returning defaultValue on error.
+// This is a convenience wrapper around ParseTime that never returns an error.
 func ParseTimeDefault(
 	ctx context.Context,
 	value interface{},

@@ -10,6 +10,10 @@ import (
 	"github.com/bborbe/errors"
 )
 
+// ParseInt64Array converts an interface{} value to an int64 slice.
+// Supported types: []int64, []interface{}, []int, []int32, []float32, []float64, []string.
+// Each element is converted using ParseInt64.
+// Returns an error if the value cannot be converted to []int64.
 func ParseInt64Array(ctx context.Context, value interface{}) ([]int64, error) {
 	switch v := value.(type) {
 	case []int64:
@@ -31,6 +35,8 @@ func ParseInt64Array(ctx context.Context, value interface{}) ([]int64, error) {
 	}
 }
 
+// ParseInt64ArrayDefault converts an interface{} value to an int64 slice, returning defaultValue on error.
+// This is a convenience wrapper around ParseInt64Array that never returns an error.
 func ParseInt64ArrayDefault(ctx context.Context, value interface{}, defaultValue []int64) []int64 {
 	result, err := ParseInt64Array(ctx, value)
 	if err != nil {
@@ -39,6 +45,9 @@ func ParseInt64ArrayDefault(ctx context.Context, value interface{}, defaultValue
 	return result
 }
 
+// ParseInt64ArrayFromInterfaces converts a slice of interface{} values to an int64 slice.
+// Each element is converted using ParseInt64.
+// Returns an error if any element cannot be converted to int64.
 func ParseInt64ArrayFromInterfaces(ctx context.Context, values []interface{}) ([]int64, error) {
 	result := make([]int64, len(values))
 	for i, vv := range values {

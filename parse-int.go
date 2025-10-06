@@ -12,6 +12,11 @@ import (
 	"github.com/bborbe/math"
 )
 
+// ParseInt converts an interface{} value to an int.
+// Supported types: int, int32, int64, float32, float64, string, fmt.Stringer.
+// Float values are rounded to the nearest integer.
+// String values are parsed using strconv.Atoi.
+// Returns an error if the value cannot be converted to int.
 func ParseInt(ctx context.Context, value interface{}) (int, error) {
 	switch v := value.(type) {
 	case int:
@@ -33,6 +38,8 @@ func ParseInt(ctx context.Context, value interface{}) (int, error) {
 	}
 }
 
+// ParseIntDefault converts an interface{} value to an int, returning defaultValue on error.
+// This is a convenience wrapper around ParseInt that never returns an error.
 func ParseIntDefault(ctx context.Context, value interface{}, defaultValue int) int {
 	result, err := ParseInt(ctx, value)
 	if err != nil {

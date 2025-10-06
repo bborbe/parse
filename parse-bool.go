@@ -12,6 +12,10 @@ import (
 	"github.com/bborbe/errors"
 )
 
+// ParseBool converts an interface{} value to a bool.
+// Supported types: bool, string (case-insensitive "true"/"false"), fmt.Stringer.
+// String values are converted to lowercase and compared against "true" and "false".
+// Returns an error if the value cannot be converted to bool.
 func ParseBool(ctx context.Context, value interface{}) (bool, error) {
 	switch v := value.(type) {
 	case bool:
@@ -31,6 +35,8 @@ func ParseBool(ctx context.Context, value interface{}) (bool, error) {
 	}
 }
 
+// ParseBoolDefault converts an interface{} value to a bool, returning defaultValue on error.
+// This is a convenience wrapper around ParseBool that never returns an error.
 func ParseBoolDefault(ctx context.Context, value interface{}, defaultValue bool) bool {
 	result, err := ParseBool(ctx, value)
 	if err != nil {

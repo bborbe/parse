@@ -12,6 +12,11 @@ import (
 	"github.com/bborbe/math"
 )
 
+// ParseInt64 converts an interface{} value to an int64.
+// Supported types: int64, int32, int, float32, float64, string.
+// Float values are rounded to the nearest integer.
+// String values are parsed using strconv.ParseInt.
+// Returns an error if the value cannot be converted to int64.
 func ParseInt64(ctx context.Context, value interface{}) (int64, error) {
 	switch v := value.(type) {
 	case int64:
@@ -31,6 +36,8 @@ func ParseInt64(ctx context.Context, value interface{}) (int64, error) {
 	}
 }
 
+// ParseInt64Default converts an interface{} value to an int64, returning defaultValue on error.
+// This is a convenience wrapper around ParseInt64 that never returns an error.
 func ParseInt64Default(ctx context.Context, value interface{}, defaultValue int64) int64 {
 	result, err := ParseInt64(ctx, value)
 	if err != nil {

@@ -8,6 +8,14 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.8.1
+
+- Enhance README.md with comprehensive documentation
+- Add installation instructions and usage examples
+- Add status badges for CI, coverage, and Go Report Card
+- Add GoDoc comments to all exported functions
+- Improve API documentation for pkg.go.dev
+
 ## v1.8.0
 
 - Add ParseASCII function with correct capitalization
