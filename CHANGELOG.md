@@ -8,6 +8,12 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.8.3
+
+- Upgrade osv-scanner to v2.2.3 with configuration file support
+- Enhance Makefile osv-scanner target to support optional .osv-scanner.toml config
+- Update development tool dependencies
+
 ## v1.8.2
 
 - Update Go version to 1.25.2
