@@ -8,6 +8,15 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.8.2
+
+- Update Go version to 1.25.2
+- Update CI workflow to use Go 1.25.2
+- Update dependencies (golang.org/x/text, golang.org/x/crypto, golang.org/x/net, golang.org/x/sys, golang.org/x/term, golang.org/x/exp)
+- Update prometheus client libraries
+- Update internal dependencies (bborbe/collection, bborbe/run)
+- Add exclude directive for incompatible golang.org/x/tools v0.38.0
+
 ## v1.8.1
 
 - Enhance README.md with comprehensive documentation
