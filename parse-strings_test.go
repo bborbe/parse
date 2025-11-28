@@ -13,6 +13,27 @@ import (
 	"github.com/bborbe/parse"
 )
 
+// Test types for string subtype slice support
+type Direction string
+
+// Test type implementing String() string for HasString interface support
+type DirectionWithString struct {
+	val string
+}
+
+func (d DirectionWithString) String() string {
+	return d.val
+}
+
+// Test type implementing Strings() []string for HasStrings interface support
+type DirectionsWithStrings struct {
+	vals []string
+}
+
+func (d DirectionsWithStrings) Strings() []string {
+	return d.vals
+}
+
 var _ = DescribeTable(
 	"ParseStrings",
 	func(value interface{}, expectedResult []string, expectError bool) {
@@ -41,6 +62,52 @@ var _ = DescribeTable(
 	Entry("int64 slice", []int64{100, 200}, []string{"100", "200"}, false),
 	Entry("unsupported type", 42, nil, true),
 	Entry("unsupported slice type", []float32{1.0, 2.0}, nil, true),
+	// String subtype slice tests
+	Entry("slice of string subtype", []Direction{"up", "down"}, []string{"up", "down"}, false),
+	Entry("empty slice of string subtype", []Direction{}, []string{}, false),
+	// HasStrings interface tests
+	Entry(
+		"HasStrings interface",
+		DirectionsWithStrings{vals: []string{"north", "south"}},
+		[]string{"north", "south"},
+		false,
+	),
+	Entry(
+		"HasStrings interface empty",
+		DirectionsWithStrings{vals: []string{}},
+		[]string{},
+		false,
+	),
+	// HasString interface tests (single value converted to slice)
+	Entry(
+		"HasString interface",
+		DirectionWithString{val: "east"},
+		[]string{"east"},
+		false,
+	),
+	// Slice of HasString tests
+	Entry(
+		"slice of HasString",
+		[]DirectionWithString{{val: "west"}, {val: "northwest"}},
+		[]string{"west", "northwest"},
+		false,
+	),
+	Entry(
+		"empty slice of HasString",
+		[]DirectionWithString{},
+		[]string{},
+		false,
+	),
+	// Slice of interface type ([]parse.HasString)
+	Entry(
+		"slice of HasString interface type",
+		[]parse.HasString{
+			DirectionWithString{val: "interface1"},
+			DirectionWithString{val: "interface2"},
+		},
+		[]string{"interface1", "interface2"},
+		false,
+	),
 )
 
 var _ = DescribeTable(
@@ -69,5 +136,24 @@ var _ = DescribeTable(
 		[]float32{1.0},
 		[]string{"fallback"},
 		[]string{"fallback"},
+	),
+	// New type support tests
+	Entry(
+		"string subtype slice",
+		[]Direction{"left", "right"},
+		[]string{"default"},
+		[]string{"left", "right"},
+	),
+	Entry(
+		"HasStrings interface",
+		DirectionsWithStrings{vals: []string{"up"}},
+		[]string{"default"},
+		[]string{"up"},
+	),
+	Entry(
+		"HasString interface",
+		DirectionWithString{val: "down"},
+		[]string{"default"},
+		[]string{"down"},
 	),
 )

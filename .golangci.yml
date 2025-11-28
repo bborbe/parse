@@ -14,14 +14,31 @@ linters:
     - gocyclo
     - depguard
     - dupl
+    - funlen
+    - gocognit
+    - nestif
+    - maintidx
+    - errname
+    - unparam
+    - bodyclose
+    - forcetypeassert
 
 linters-settings:
   depguard:
     rules:
       Main:
         deny:
-          - pkg: "github.com/pkg/erros"
-            desc: "use github.com/bborbe/erros instead"
+          - pkg: "github.com/pkg/errors"
+            desc: "use github.com/bborbe/errors instead"
+  funlen:
+    lines: 100
+    statements: 50
+  gocognit:
+    min-complexity: 30
+  nestif:
+    min-complexity: 5
+  maintidx:
+    threshold: 20
 
 issues:
   exclude-rules:
@@ -38,3 +55,9 @@ issues:
     - linters:
         - revive
       text: "stutters"
+    - linters:
+        - funlen
+      path: "_test\\.go$"
+    - linters:
+        - gocognit
+      path: "_test\\.go$"

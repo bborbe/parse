@@ -8,6 +8,19 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.9.0
+
+- Add HasStrings and HasString interfaces for custom string conversion
+- Add support for parsing slices of string subtypes via reflection
+- Add support for parsing slices of types implementing String() method
+- Improve Makefile with .PHONY declarations for all targets
+- Enable race detection in test target
+- Add go-modtool for go.mod formatting
+- Remove deprecated golang.org/x/lint/golint dependency
+- Enhance .golangci.yml with 8 additional linters (funlen, gocognit, nestif, maintidx, errname, unparam, bodyclose, forcetypeassert)
+- Fix typo in .golangci.yml depguard rule
+- Add standard ignore patterns to .gitignore
+
 ## v1.8.3
 
 - Upgrade osv-scanner to v2.2.3 with configuration file support
