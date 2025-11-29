@@ -8,6 +8,10 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.9.1
+
+- Rename InvalidTypeError to ErrInvalidType to follow Go error naming conventions
+
 ## v1.9.0
 
 - Add HasStrings and HasString interfaces for custom string conversion

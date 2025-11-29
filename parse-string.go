@@ -14,8 +14,8 @@ import (
 	"github.com/bborbe/errors"
 )
 
-// InvalidTypeError is returned when a value cannot be converted to the requested type.
-var InvalidTypeError = stderrors.New("invalid type")
+// ErrInvalidType is returned when a value cannot be converted to the requested type.
+var ErrInvalidType = stderrors.New("invalid type")
 
 // ParseString converts an interface{} value to a string.
 // Supported types: string, bool, int, int32, int64, uint, uint32, uint64, float32, float64, fmt.Stringer.
@@ -49,7 +49,7 @@ func ParseString(ctx context.Context, value interface{}) (string, error) {
 		if isSubtypeOfString(value) {
 			return ParseString(ctx, fmt.Sprintf("%s", value))
 		}
-		return "", errors.Wrapf(ctx, InvalidTypeError, "parse failed")
+		return "", errors.Wrapf(ctx, ErrInvalidType, "parse failed")
 	}
 }
 
