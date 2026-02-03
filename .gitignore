@@ -7,3 +7,5 @@
 /.mcp.json
 /.serena
 /data
+/.update-logs/
+/.mcp-*
