@@ -8,6 +8,14 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.10.2
+
+- Update Go to 1.25.7
+- Update bborbe/errors to v1.5.2
+- Update bborbe/math to v1.3.1
+- Update testing frameworks (ginkgo v2.28.1, gomega v1.39.1)
+- Update numerous indirect dependencies
+
 ## v1.10.1
 
 - Update Go to 1.25.5
