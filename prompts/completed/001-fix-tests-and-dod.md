@@ -1,7 +1,12 @@
 ---
-status: approved
+status: completed
+summary: Verified project health — all tests pass, linting clean, no vulnerabilities, precommit exits 0.
+container: parse-001-fix-tests-and-dod
+dark-factory-version: v0.59.5-dirty
 created: "2026-03-20T12:58:06Z"
 queued: "2026-03-20T12:58:06Z"
+started: "2026-03-20T15:12:05Z"
+completed: "2026-03-20T15:20:55Z"
 ---
 
 <summary>
