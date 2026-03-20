@@ -1,3 +1,5 @@
+version: "2"
+
 run:
   timeout: 5m
   tests: true
@@ -7,7 +9,6 @@ linters:
     - govet
     - errcheck
     - staticcheck
-    - gosimple
     - unused
     - revive
     - gosec
@@ -22,42 +23,47 @@ linters:
     - unparam
     - bodyclose
     - forcetypeassert
-
-linters-settings:
-  depguard:
+  settings:
+    depguard:
+      rules:
+        Main:
+          deny:
+            - pkg: "github.com/pkg/errors"
+              desc: "use github.com/bborbe/errors instead"
+    funlen:
+      lines: 100
+      statements: 50
+    gocognit:
+      min-complexity: 30
+    nestif:
+      min-complexity: 5
+    maintidx:
+      min-maintainability-index: 20
+  exclusions:
+    presets:
+      - comments
+      - std-error-handling
+      - common-false-positives
     rules:
-      Main:
-        deny:
-          - pkg: "github.com/pkg/errors"
-            desc: "use github.com/bborbe/errors instead"
-  funlen:
-    lines: 100
-    statements: 50
-  gocognit:
-    min-complexity: 30
-  nestif:
-    min-complexity: 5
-  maintidx:
-    threshold: 20
-
-issues:
-  exclude-rules:
-    - linters:
-        - staticcheck
-      text: "SA1019" # allow deprecated in specific cases
-    - linters:
-        - revive
-      path: "_test\\.go$"
-      text: "dot-imports"
-    - linters:
-        - revive
-      text: "unused-parameter"
-    - linters:
-        - revive
-      text: "stutters"
-    - linters:
-        - funlen
-      path: "_test\\.go$"
-    - linters:
-        - gocognit
-      path: "_test\\.go$"
+      - linters:
+          - staticcheck
+        text: "SA1019"
+      - linters:
+          - revive
+        path: "_test\\.go$"
+        text: "dot-imports"
+      - linters:
+          - revive
+        text: "unused-parameter"
+      - linters:
+          - revive
+        text: "stutters"
+      - linters:
+          - revive
+        text: "exported"
+      - linters:
+          - funlen
+        path: "_test\\.go$"
+      - linters:
+          - gocognit
+        path: "_test\\.go$"
