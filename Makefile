@@ -21,6 +21,8 @@ format:
 .PHONY: generate
 generate:
 	rm -rf mocks avro
+	mkdir -p mocks
+	echo "package mocks" > mocks/mocks.go
 	go generate -mod=mod ./...
 
 .PHONY: test
@@ -29,6 +31,10 @@ test:
 
 .PHONY: check
 check: lint vet errcheck vulncheck osv-scanner gosec trivy
+
+.PHONY: lint
+lint:
+	go run -mod=mod github.com/golangci/golangci-lint/v2/cmd/golangci-lint run --config .golangci.yml ./...
 
 .PHONY: vet
 vet:
@@ -58,11 +64,13 @@ gosec:
 
 .PHONY: trivy
 trivy:
-	trivy fs --scanners vuln,secret --quiet --no-progress --disable-telemetry --exit-code 1 .
-
-.PHONY: lint
-lint:
-	go run -mod=mod github.com/golangci/golangci-lint/v2/cmd/golangci-lint run --config .golangci.yml ./...
+	trivy fs \
+	--db-repository ghcr.io/aquasecurity/trivy-db \
+	--scanners vuln,secret \
+	--quiet \
+	--no-progress \
+	--disable-telemetry \
+	--exit-code 1 .
 
 .PHONY: addlicense
 addlicense:
