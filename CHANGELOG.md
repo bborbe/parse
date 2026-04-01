@@ -8,6 +8,13 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.10.9
+
+- Update multiple indirect dependencies (docker, containerd, moby, otel)
+- Replace k8s.io/kube-openapi replace directive with charmbracelet/x/cellbuf, denis-tingaikin/go-header, opencontainers/runtime-spec
+- Remove large exclude block for k8s and other packages
+- Bump golang.org/x/exp, go-git, klauspost/compress, and yaml libraries
+
 ## v1.10.8
 
 - chore: verify project health — all tests pass, linting clean, precommit exits 0
