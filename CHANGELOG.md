@@ -8,6 +8,14 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.10.10
+
+- Update go runtime to 1.26.2
+- Bump bborbe/errors to v1.5.9, bborbe/math to v1.3.7
+- Update golangci-lint to v2.11.4, osv-scanner to v2.3.5
+- Update golang.org/x/text to v0.36.0
+- Add new vuln ignores to osv-scanner and trivyignore
+
 ## v1.10.9
 
 - Update multiple indirect dependencies (docker, containerd, moby, otel)
