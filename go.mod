@@ -1,9 +1,9 @@
 module github.com/bborbe/parse
 
-go 1.26.2
+go 1.26.3
 
 require (
-	github.com/bborbe/errors v1.5.11
+	github.com/bborbe/errors v1.5.13
 	github.com/bborbe/math v1.3.9
 	github.com/onsi/ginkgo/v2 v2.28.3
 	github.com/onsi/gomega v1.40.0
