@@ -8,6 +8,14 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.10.13
+
+- bump go 1.26.3 → 1.26.4
+- bump bborbe/math v1.3.9 → v1.3.10, ginkgo v2.28.3 → v2.29.0, gomega v1.40.0 → v1.41.0
+- bump golang.org/x/text v0.36.0 → v0.37.0, x/net v0.53.0 → v0.55.0, x/sys v0.43.0 → v0.45.0
+- drop standalone errcheck/gosec targets; move config into .golangci.yml
+- add .maintainer.yaml; set autoRelease=false in .dark-factory.yaml
+
 ## v1.10.12
 
 - bump go 1.26.2 → 1.26.3
