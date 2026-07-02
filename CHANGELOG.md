@@ -8,6 +8,13 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## v1.10.14
+
+- Bump github.com/bborbe/math from v1.3.10 to v1.3.11
+- Bump github.com/onsi/ginkgo/v2 from v2.29.0 to v2.32.0
+- Bump github.com/onsi/gomega from v1.41.0 to v1.42.1
+- Bump golang.org/x/text from v0.37.0 to v0.38.0
+
 ## v1.10.13
 
 - bump go 1.26.3 → 1.26.4
