@@ -4,7 +4,7 @@ go 1.26.4
 
 require (
 	github.com/bborbe/errors v1.5.15
-	github.com/bborbe/math v1.3.12
+	github.com/bborbe/math v1.3.13
 	github.com/onsi/ginkgo/v2 v2.32.0
 	github.com/onsi/gomega v1.42.1
 	golang.org/x/text v0.38.0
@@ -12,8 +12,8 @@ require (
 
 require (
 	github.com/Masterminds/semver/v3 v3.4.0 // indirect
-	github.com/bborbe/collection v1.20.13 // indirect
-	github.com/bborbe/run v1.9.27 // indirect
+	github.com/bborbe/collection v1.20.15 // indirect
+	github.com/bborbe/run v1.9.28 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/getsentry/sentry-go v0.46.2 // indirect
