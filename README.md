@@ -161,3 +161,7 @@ All parse functions have corresponding `ParseXDefault` variants that return a fa
 - etc.
 
 Full API documentation: [pkg.go.dev/github.com/bborbe/parse](https://pkg.go.dev/github.com/bborbe/parse)
+
+## License
+
+This project is licensed under the BSD-style license. See the [LICENSE](LICENSE) file for details.
