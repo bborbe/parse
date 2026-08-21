@@ -8,6 +8,13 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## Unreleased
+
+- chore: Run `gofmt -w` last in the `format` target so golines' wrapping is normalized before the gofmt lint check
+- chore: Bump golangci-lint to v2.13.1 (fixes staticcheck `buildir` panic on Go 1.27 AST)
+- chore: Bump errcheck to v1.20.0 (fixes `package "context" without types` on Go 1.27)
+- fix: Replace deprecated `reflect.Ptr` with `reflect.Pointer` in parse-strings.go to satisfy the govet `inline` check on Go 1.27
+
 ## v1.10.20
 
 - Bump Go toolchain to 1.26.6 and update dependencies
