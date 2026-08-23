@@ -1,19 +1,19 @@
 module github.com/bborbe/parse
 
-go 1.26.6
+go 1.27.0
 
 require (
-	github.com/bborbe/errors v1.5.17
-	github.com/bborbe/math v1.3.18
-	github.com/onsi/ginkgo/v2 v2.32.0
+	github.com/bborbe/errors v1.5.20
+	github.com/bborbe/math v1.4.2
+	github.com/onsi/ginkgo/v2 v2.32.1
 	github.com/onsi/gomega v1.42.1
 	golang.org/x/text v0.41.0
 )
 
 require (
 	github.com/Masterminds/semver/v3 v3.4.0 // indirect
-	github.com/bborbe/collection v1.20.20 // indirect
-	github.com/bborbe/run v1.9.34 // indirect
+	github.com/bborbe/collection v1.20.23 // indirect
+	github.com/bborbe/run v1.9.37 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/getsentry/sentry-go v0.48.0 // indirect
