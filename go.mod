@@ -12,7 +12,7 @@ require (
 
 require (
 	github.com/Masterminds/semver/v3 v3.4.0 // indirect
-	github.com/bborbe/collection v1.20.25 // indirect
+	github.com/bborbe/collection v1.20.26 // indirect
 	github.com/bborbe/run v1.10.2 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
