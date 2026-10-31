@@ -8,6 +8,10 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
+## Unreleased
+
+- chore: bump golang.org/x/net to v0.62.0 (CVE-2026-97045)
+
 ## v1.12.4
 
 - chore: update Go to 1.27.3 and github.com/bborbe/math to v1.4.15, github.com/onsi/ginkgo/v2 to v2.33.1, github.com/onsi/gomega to v1.44.0
