@@ -8,7 +8,7 @@ Please choose versions by [Semantic Versioning](http://semver.org/).
 * MINOR version when you add functionality in a backwards-compatible manner, and
 * PATCH version when you make backwards-compatible bug fixes.
 
-## Unreleased
+## v1.12.6
 
 - chore: update github.com/bborbe/errors to v1.6.6, github.com/bborbe/math to v1.4.18, golang.org/x/text to v0.44.0
 
